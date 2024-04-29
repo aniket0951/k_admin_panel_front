@@ -1,0 +1,82 @@
+<div class="container">
+    <!-- Button to toggle add student section -->
+    
+    <button mat-raised-button color="primary" class="add-button" (click)="toggleAddStudent()">ADD +</button>
+
+    <div  [@slideInOut]="addStudentVisible">
+        <mat-toolbar class="center-text">
+            <span>ADD Student</span>
+        </mat-toolbar>
+        <!-- Student registration form using Angular Material -->
+        <form class="student-form" (ngSubmit)="addStudent()">
+            <mat-card class="layout-padding">
+                <mat-card-content>
+                    <div class="form-row">
+                        <mat-form-field>
+                            <mat-label>Name</mat-label>
+                            <input matInput [(ngModel)]="newStudent.name" name="name" required>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>Age</mat-label>
+                            <input matInput type="number" [(ngModel)]="newStudent.age" name="age" required>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>Date of Birth</mat-label>
+                            <input matInput type="date" [(ngModel)]="newStudent.dob" name="dob" required>
+                        </mat-form-field>
+                    </div>
+                    <div class="form-row">
+                        <mat-form-field>
+                            <mat-label>Address</mat-label>
+                            <input matInput [(ngModel)]="newStudent.address" name="address" required>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>Class/Branch</mat-label>
+                            <input matInput [(ngModel)]="newStudent.class_branch" name="class_branch" required>
+                        </mat-form-field>
+                        <button mat-raised-button type="submit">Add Student</button>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </form>
+    
+    </div>
+   
+    <!-- Display list of already registered students -->
+    <div class="student-list">
+        <h2>Registered Students</h2>
+        <table class="students-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Date of Birth</th>
+                    <th>Address</th>
+                    <th>Class/Branch</th>
+                    <th>Delete</th>
+                    <th>Edit</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let student of students">
+                    <td>{{ student.name }}</td>
+                    <td>{{ student.age }}</td>
+                    <td>{{ student.dob }}</td>
+                    <td>{{ student.address }}</td>
+                    <td>{{ student.class_branch }}</td>
+                    <td>
+                        <button mat-icon-button color="primary" (click)="editStudent(student)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </td>
+                    <td>
+                        <button mat-icon-button color="warn" (click)="deleteStudent(student)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    
+    </div>
+</div>

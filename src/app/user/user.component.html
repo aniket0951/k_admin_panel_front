@@ -1,0 +1,17 @@
+<div class="nav-container">
+    <div class="top-nav">
+      <h1>Welcome Admin</h1>
+      <button (click)="logout()">Logout</button>
+    </div>
+    <div class="sidenav">
+      <ul>
+        <li (click)="addEvent()">Add Events</li> 
+        <li (click)="addstudent()">Add Student </li>
+        <li (click)="addadmin()">Add Admin</li>
+      </ul>
+    </div>
+    <div class="main-content">
+        <router-outlet></router-outlet>
+    </div>
+  </div>
+  
