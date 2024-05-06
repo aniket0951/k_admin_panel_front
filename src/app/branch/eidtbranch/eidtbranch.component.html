@@ -1,0 +1,34 @@
+<div class="container">
+
+    <div>
+        <mat-toolbar class="center-text">
+            <span>Edit Branch</span>
+        </mat-toolbar>
+        <!-- Student registration form using Angular Material -->
+        <form class="student-form" (ngSubmit)="updateBranch()">
+            <mat-card class="layout-padding">
+                <mat-card-content>
+                    <div class="form-row">
+                        <mat-form-field appearance="fill" style="width: 100%;">
+                            <mat-label>Branch Name</mat-label>
+                            <input matInput [(ngModel)]="branch.name" name="branch_name" required>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="fill" style="width: 100%;">
+                            <mat-label>Branch Address</mat-label>
+                            <input matInput [(ngModel)]="branch.address" name="branch_address" required>
+                        </mat-form-field>
+
+                        
+                        <mat-checkbox class="full-width-checkbox"[(ngModel)]="branch.is_active" name="is_active" >Branch Status</mat-checkbox>
+
+
+                        <button mat-raised-button type="submit">Update</button>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </form>
+
+    </div>
+
+</div>
