@@ -1,7 +1,19 @@
-import { Component,OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { AppService } from 'src/app/service/app.service';
-import { trigger, state, style, animate, transition,group } from '@angular/animations';
+import { trigger, state, style, animate, transition, group } from '@angular/animations';
+import { GET_STUDENTS, GET_BRANCHES, ADD_STUDENT, TOTAL_COUNT } from 'src/app/utils/endpoints';
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+import { PageEvent } from '@angular/material/paginator';
+
+export interface UserData {
+  name: string;
+  // Define more properties as needed
+}
+
 AppService
 
 interface Student {
@@ -51,25 +63,43 @@ interface Student {
     ])
   ]
 })
+
 export class StudentregisterComponent implements OnInit {
   newStudent: Student = {
     name: '',
     age: 0,
-    dob:  new Date().toISOString().split('T')[0],
+    dob: new Date().toISOString().split('T')[0],
     address: '',
     class_branch: ''
   };
   students: Student[] = [];
-  addStudentVisible: string = 'out'; // Initialize the visibility of add student section
+  branches: any = [];
+  addStudentVisible: string = 'out';
+  displayedColumns: string[] = ['Name', 'Age', 'DOB', 'Address', 'Branch', 'Action'];
+  dataSource!: MatTableDataSource<Student>;
+  totalRecords:number = 0;
+  defaultPageSize = 10; 
+  customPageSizeOptions: number[] = [5, 10, 25, 50, 100];
+  
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator | undefined;
 
-  // Function to toggle the visibility of add student section
-  toggleAddStudent() {
+
+
+  toggleAddStudent(isFetch: boolean) {
+    // fetch the branch names
+    if (isFetch) {
+      this.getBranchs()
+    } else {
+      this.totalStudentCount()
+      this.getStudents(0,this.defaultPageSize)
+    }
+    
     this.addStudentVisible = this.addStudentVisible === 'out' ? 'in' : 'out';
   }
 
   studentForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private appService: AppService) {
+  constructor(private formBuilder: FormBuilder, private appService: AppService, private router:Router) {
     this.studentForm = this.formBuilder.group({
       name: [''],
       age: [''],
@@ -77,12 +107,47 @@ export class StudentregisterComponent implements OnInit {
       address: [''],
       class_branch: [''],
     });
+    this.totalStudentCount()
+    this.getStudents(0,this.defaultPageSize)
   }
 
+  
+  onPageChange(event: PageEvent) {
 
-ngOnInit(): void {
-    
-}
+    const skip = event.pageIndex * event.pageSize;
+    const limit = event.pageSize;
+    this.getStudents(skip, limit);
+
+  }
+
+  ngOnInit(): void { }
+
+
+
+  getBranchs(): void {
+    this.appService.getRequest(GET_BRANCHES).subscribe((response: any) => {
+      if (response) {
+        this.branches = response?.data
+      }
+    })
+  }
+  getStudents(skip:number, limit:number): void {
+    this.appService.getRequest(GET_STUDENTS + skip + "/" + limit).subscribe((result: any) => {
+      if (result) {
+        this.students = result?.data;
+        this.dataSource = new MatTableDataSource(this.students);
+      }
+    })
+  }
+
+  // fetch total student count
+  totalStudentCount():void{
+    this.appService.getRequest(TOTAL_COUNT).subscribe((response:any) =>{
+      if (response) {
+        this.totalRecords = response?.data
+      }
+    })
+  }
 
   validateStudent(student: Student): boolean {
     // Check if all fields are present and not empty
@@ -113,55 +178,38 @@ ngOnInit(): void {
     this.studentForm.markAllAsTouched();
     // Check if the form is valid
     if (this.studentForm.valid) {
-      // Validate the newStudent object
       if (this.validateStudent(this.newStudent)) {
-        // Form is valid, proceed with adding the student
-        console.log("Form is valid. Proceeding to add student.");
-        console.log("New Student:", this.newStudent);
-        this.appService.postRequest("http://192.168.0.119:8000/api/student/add-student", this.newStudent).subscribe((result: any) => {
+
+        this.appService.postRequest(ADD_STUDENT, this.newStudent).subscribe((result: any) => {
           console.log(result);
-          if (result.res) {
-            console.log("Success");
-          }else{
-            console.log("Error",result);
+          if (result) {
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Student has been registered successfull !",
+              showConfirmButton: false,
+              timer: 1500
+            });
           }
         });
         this.studentForm.reset();
         this.newStudent = {
-          name: ' ',
+          name: '',
           age: 0,
-          dob:  new Date().toISOString().split('T')[0],
+          dob: new Date().toISOString().split('T')[0],
           address: ' ',
           class_branch: ' '
         };
-       
-      } else {
-       alert(" invalid username"); 
-      }
-    }
-      
-  }
-  
-  // addStudent():void {
-  //   let obj = {
-  //     "name": "Student1",
-  //     "age": 16, 
-  //     "dob": "TestUser Update",
-  //     "address": "TestUser@gmail.com",
-  //     "class_branch":"BRANCH-1"
-  //   };
 
-  //   this.appService.postRequest("http://192.168.0.119:8000/api/student/add-student", obj).subscribe((result: any) => {
-  //       console.log(result);
-  //       if (result.status) {
-  //         console.log("Success");
-  //         console.log("RESULT--->",result.message);
-          
-  //       }else{
-  //         alert(result.message)
-  //       }
-  //     });
-  // }
+        this.toggleAddStudent(false)
+
+
+
+      } 
+    }
+
+  }
+
 
   checkFieldValidity(): void {
     Object.keys(this.studentForm.controls).forEach(field => {
@@ -172,10 +220,11 @@ ngOnInit(): void {
     });
   }
 
-  editStudent(id:any){
-
+  editStudent(student:any) {
+    this.router.navigate(['editstudent'], {queryParams:{student:student?.id}})
+    
   }
-  deleteStudent(id:any) {
+  deleteStudent(id: any) {
 
   }
 }

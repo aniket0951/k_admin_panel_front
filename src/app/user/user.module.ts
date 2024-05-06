@@ -15,6 +15,19 @@ import { UserComponent } from './user.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSelectModule } from '@angular/material/select';
+import { MatOptionModule } from '@angular/material/core';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { EditstudentComponent } from './editstudent/editstudent.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ViewEventsComponent } from './event/view-events/view-events.component';
+import { ViewbranchComponent } from '../branch/viewbranch/viewbranch.component';
+import { EidtbranchComponent } from '../branch/eidtbranch/eidtbranch.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { DatePipe } from '@angular/common';
+import { EditeventComponent } from './event/editevent/editevent.component';
 
 
 @NgModule({
@@ -24,9 +37,19 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     StudentregisterComponent,
     AddadminComponent,
     UserComponent,
+    EditstudentComponent,
+    ViewEventsComponent,
+    ViewbranchComponent,
+    EidtbranchComponent,
+    EditeventComponent
   ],
   imports: [
-    CommonModule,ReactiveFormsModule,MatToolbarModule, MatTableModule,MatIconModule,UserRoutingModule,HttpClientModule,MatInputModule,MatButtonModule,MatFormFieldModule,MatCardModule,FormsModule
+    CommonModule,ReactiveFormsModule,MatToolbarModule, MatTableModule,MatIconModule,UserRoutingModule,HttpClientModule,MatInputModule,MatButtonModule,MatFormFieldModule,MatCardModule,FormsModule,
+    MatSelectModule, MatOptionModule, MatPaginatorModule, MatSnackBarModule, MatCheckboxModule, MatDatepickerModule,MatNativeDateModule
+
+  ],
+  providers: [
+    DatePipe 
   ]
 })
 export class UserModule { }
