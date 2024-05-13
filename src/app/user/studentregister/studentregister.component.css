@@ -73,4 +73,21 @@ table {
     right: 20px;
     z-index: 9999; /* Ensure it's above other elements */
   }
-  
+
+
+  .table-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.search-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px; /*lastly edited one --- as needed */
+    margin-left: 200px;
+    padding-left: 200px;
+}
+
+.search-field {
+    width: 10px; 
+}

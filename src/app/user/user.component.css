@@ -35,12 +35,11 @@
   z-index: 1000;
   display: flex;
   position: fixed;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
+  padding: 3px;
   background-color: #007bff;
   color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  justify-content: space-between;
 }
 
 button {
@@ -57,10 +56,7 @@ button {
     background-color: #0056b3; /* Darker blue on hover */
   }
   
-.top-nav h1 {
-  font-size: 1.5rem;
-  padding-left: 20px;
-}
+
 /* 
 .logout-btn {
   background-color: #4396ee;
@@ -119,4 +115,21 @@ button {
     box-shadow: #fff;
     border-radius: 10px;
     margin-right: 10px;
+  }
+
+  .logo{
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+    border: #fff solid;
+    left: 0;
+  }
+
+  .logout{
+    right: 0px;
+  }
+
+  .logos{
+    display: flex;
+    align-items: center;
   }

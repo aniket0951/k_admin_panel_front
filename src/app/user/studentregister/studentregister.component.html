@@ -40,7 +40,46 @@
 
                             </mat-select>
                         </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>Levels</mat-label>
+                            <mat-select [(ngModel)]="newStudent.level" name="level" required>
+                                <mat-option *ngFor="let level of level" [value]="level">
+                                    {{level}}
+                                </mat-option>
 
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="form-row">
+                        <mat-form-field>
+                            <mat-label>BloodGroup</mat-label>
+                            <input matInput [(ngModel)]="newStudent.blood_group" name="blood_group" required>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>Weight</mat-label>
+                            <input matInput type="number" [(ngModel)]="newStudent.weight" name="weight" required>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>School Name</mat-label>
+                            <input matInput [(ngModel)]="newStudent.school_name" name="school_name" required>
+                        </mat-form-field>
+                    </div>
+                    <div class="form-row">
+                        <mat-form-field>
+                            <mat-label>Aadhar Number</mat-label>
+                            <input matInput [(ngModel)]="newStudent.addhar_number" name="aadhar_number" required>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>Gender</mat-label>
+                            <mat-select [(ngModel)]="newStudent.geneder" name="gender" required>
+                                <mat-option *ngFor="let geneder of geneder" [value]="geneder">
+                                    {{geneder}}
+                                </mat-option>
+
+                            </mat-select>
+                        </mat-form-field>
+                        
+                    
                         <button mat-raised-button type="submit">Add Student</button>
                     </div>
                 </mat-card-content>
@@ -53,6 +92,11 @@
 
     <div class="table-container mat-elevation-z8">
         <h2>Students</h2>
+        <mat-form-field>
+            <mat-label>Search by Level</mat-label>
+            <input matInput (keyup)="applyNameFilter($event)" placeholder="Enter level">
+            <button mat-button matSuffix color="primary" (click)="clearNameFilter()">Clear</button>
+        </mat-form-field>
         <mat-table [dataSource]="dataSource">
             <!-- Define table columns -->
             <ng-container matColumnDef="Name">
@@ -79,6 +123,12 @@
                 <mat-header-cell *matHeaderCellDef>Branch</mat-header-cell>
                 <mat-cell *matCellDef="let row">{{ row.class_branch }}</mat-cell>
             </ng-container>
+
+            <ng-container matColumnDef="Levels">
+                <mat-header-cell *matHeaderCellDef>Levels</mat-header-cell>
+                <mat-cell *matCellDef="let row">{{ row.level}}</mat-cell>
+            </ng-container>
+            
 
             <ng-container matColumnDef="Action">
                 <mat-header-cell *matHeaderCellDef>Action</mat-header-cell>

@@ -1,6 +1,6 @@
 <div class="container">
     <!-- Button to toggle add student section -->
-
+<div class="adds">
     <button mat-raised-button color="primary" class="add-button" (click)="toggleAddStudent(true)">ADD +</button>
 
     <div [@slideInOut]="addStudentVisible">
@@ -38,19 +38,12 @@
                             <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
                             <mat-datepicker #startDatePicker></mat-datepicker>
                           </mat-form-field>
-                          
+                         
                           <mat-form-field appearance="fill" style="width: 20%; margin-left: 10px;">
                             <mat-label>Start Time</mat-label>
                             <input matInput type="time" [(ngModel)]="newEvenet.start_time" name="start_time" required>
                           </mat-form-field>
                           
-                          <mat-form-field appearance="fill" style="width: 20%; margin-left: 10px;">
-                            <mat-label>Time Format</mat-label>
-                            <mat-select  name="time_format">
-                              <mat-option value="AM">AM</mat-option>
-                              <mat-option value="PM">PM</mat-option>
-                            </mat-select>
-                        </mat-form-field>
 
                         <mat-form-field appearance="fill" style="width: 40%;">
                             <mat-label>End Date</mat-label>
@@ -64,76 +57,75 @@
                             <input matInput type="time" [(ngModel)]="newEvenet.end_time" name="start_time" required>
                           </mat-form-field>
                           
-                          <mat-form-field appearance="fill" style="width: 20%; margin-left: 10px;">
-                            <mat-label>Time Format</mat-label>
-                            <mat-select  name="time_format">
-                              <mat-option value="AM">AM</mat-option>
-                              <mat-option value="PM">PM</mat-option>
-                            </mat-select>
-                        </mat-form-field>                       
-
-                        <button mat-raised-button type="submit" >Add Event</button>
+                          <button class="addeventbutton" mat-raised-button type="submit" >Add Event</button>
+                       
                     </div>
+                   
                 </mat-card-content>
             </mat-card>
         </form>
 
     </div>
 
+   
+
 
 
     <div  class="table-container mat-elevation-z8">
-        <h2>Events</h2>
-        <mat-table [dataSource]="dataSource">
-            <!-- Define table columns -->
-            <ng-container matColumnDef="Title">
-                <mat-header-cell *matHeaderCellDef>Title</mat-header-cell>
-                <mat-cell *matCellDef="let row">{{ row.title }}</mat-cell>
-            </ng-container>
-
-            <ng-container matColumnDef="Discription">
-                <mat-header-cell *matHeaderCellDef>Discription</mat-header-cell>
-                <mat-cell *matCellDef="let row">{{ row.discription }}</mat-cell>
-            </ng-container>
-
-            <ng-container matColumnDef="Location">
-                <mat-header-cell *matHeaderCellDef>location</mat-header-cell>
-                <mat-cell *matCellDef="let row">{{ row.location }}</mat-cell>
-            </ng-container>
-
-
-            <ng-container matColumnDef="Start Date">
-                <mat-header-cell *matHeaderCellDef>Start Date</mat-header-cell>
-                <mat-cell *matCellDef="let row">{{ row.start_date }}</mat-cell>
-            </ng-container>
-
-            <ng-container matColumnDef="End Date">
-                <mat-header-cell *matHeaderCellDef>End Date</mat-header-cell>
-                <mat-cell *matCellDef="let row">{{ row.start_date }}</mat-cell>
-            </ng-container>
-
-            <ng-container matColumnDef="Action">
-                <mat-header-cell *matHeaderCellDef>Action</mat-header-cell>
-                <mat-cell *matCellDef="let row">
-
-                    <button mat-icon-button color="primary" (click)="editEvent(row)">
-                        <mat-icon>edit</mat-icon>
-                    </button> 
-
-                    <button mat-icon-button color="primary">
-                        <mat-icon>delete</mat-icon>
-                    </button> 
-
-                </mat-cell>
-            </ng-container>
-
-
-            <!-- Table rows -->
-            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-        </mat-table>
-        <mat-paginator [pageSizeOptions]="customPageSizeOptions" [pageSize]="defaultPageSize" [length]="totalRecords"
-            (page)="onPageChange($event)" showFirstLastButtons></mat-paginator>
-    </div>
-
+        
+            <h2>Events</h2>
+            <mat-table [dataSource]="dataSource">
+                <!-- Define table columns -->
+                <ng-container matColumnDef="Title">
+                    <mat-header-cell *matHeaderCellDef>Title</mat-header-cell>
+                    <mat-cell *matCellDef="let row">{{ row.title }}</mat-cell>
+                </ng-container>
+    
+                <ng-container matColumnDef="Discription">
+                    <mat-header-cell *matHeaderCellDef>Discription</mat-header-cell>
+                    <mat-cell *matCellDef="let row">{{ row.discription }}</mat-cell>
+                </ng-container>
+    
+                <ng-container matColumnDef="Location">
+                    <mat-header-cell *matHeaderCellDef>location</mat-header-cell>
+                    <mat-cell *matCellDef="let row">{{ row.location }}</mat-cell>
+                </ng-container>
+    
+    
+                <ng-container matColumnDef="Start Date">
+                    <mat-header-cell *matHeaderCellDef>Start Date</mat-header-cell>
+                    <mat-cell *matCellDef="let row">{{ row.start_date }}</mat-cell>
+                </ng-container>
+    
+                <ng-container matColumnDef="End Date">
+                    <mat-header-cell *matHeaderCellDef>End Date</mat-header-cell>
+                    <mat-cell *matCellDef="let row">{{ row.start_date }}</mat-cell>
+                </ng-container>
+    
+                <ng-container matColumnDef="Action">
+                    <mat-header-cell *matHeaderCellDef>Action</mat-header-cell>
+                    <mat-cell *matCellDef="let row">
+    
+                        <button mat-icon-button color="primary" (click)="editEvent(row)">
+                            <mat-icon>edit</mat-icon>
+                        </button> 
+    
+                        <button mat-icon-button color="primary">
+                            <mat-icon>delete</mat-icon>
+                        </button> 
+    
+                    </mat-cell>
+                </ng-container>
+    
+    
+                <!-- Table rows -->
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+            </mat-table>
+            <mat-paginator [pageSizeOptions]="customPageSizeOptions" [pageSize]="defaultPageSize" [length]="totalRecords"
+                (page)="onPageChange($event)" showFirstLastButtons></mat-paginator>
+        
+        </div>
+       
+</div>
 </div>

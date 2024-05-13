@@ -11,9 +11,13 @@
 .form-row {
     display: flex;
     flex-wrap: wrap;
+    justify-content: left;
     margin-bottom: 16px;
+    
 }
-
+.addeventbutton{
+    margin-left: 200px;
+}
 .mat-form-field {
     flex-basis: calc(33.33% - 16px);
 }
@@ -51,12 +55,13 @@ table {
 }
 
 .table-container {
-    width: 80%;
+    width: 100%;
     margin-top: 50px; 
 }  
 
 .table-container h2 {
     margin-left: 15px;
+    
 }
 
 .center-text {
@@ -73,4 +78,14 @@ table {
     right: 20px;
     z-index: 9999; /* Ensure it's above other elements */
   }
-  
+  .adds{
+    margin-left: 230px;
+  }
+.eve{
+    margin-left: 50px;
+}
+.add{
+    display: flex;
+    justify-content: center;
+
+}

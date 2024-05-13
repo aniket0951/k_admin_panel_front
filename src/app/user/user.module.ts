@@ -28,6 +28,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { DatePipe } from '@angular/common';
 import { EditeventComponent } from './event/editevent/editevent.component';
+import { MatRadioModule } from '@angular/material/radio';
 
 
 @NgModule({
@@ -45,7 +46,7 @@ import { EditeventComponent } from './event/editevent/editevent.component';
   ],
   imports: [
     CommonModule,ReactiveFormsModule,MatToolbarModule, MatTableModule,MatIconModule,UserRoutingModule,HttpClientModule,MatInputModule,MatButtonModule,MatFormFieldModule,MatCardModule,FormsModule,
-    MatSelectModule, MatOptionModule, MatPaginatorModule, MatSnackBarModule, MatCheckboxModule, MatDatepickerModule,MatNativeDateModule
+    MatSelectModule, MatOptionModule, MatPaginatorModule, MatSnackBarModule, MatCheckboxModule, MatDatepickerModule,MatNativeDateModule,MatRadioModule,
 
   ],
   providers: [
