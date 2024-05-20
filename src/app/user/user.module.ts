@@ -15,7 +15,22 @@ import { UserComponent } from './user.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
-
+import { MatSelectModule } from '@angular/material/select';
+import { MatOptionModule } from '@angular/material/core';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { EditstudentComponent } from './editstudent/editstudent.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ViewEventsComponent } from './event/view-events/view-events.component';
+import { ViewbranchComponent } from '../branch/viewbranch/viewbranch.component';
+import { EidtbranchComponent } from '../branch/eidtbranch/eidtbranch.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { DatePipe } from '@angular/common';
+import { EditeventComponent } from './event/editevent/editevent.component';
+import { MatRadioModule } from '@angular/material/radio';
+import { CourseviewComponent } from '../course/courseview/courseview.component';
+import { EditcourseComponent } from '../course/editcourse/editcourse.component';
 
 @NgModule({
   declarations: [
@@ -24,9 +39,21 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     StudentregisterComponent,
     AddadminComponent,
     UserComponent,
+    EditstudentComponent,
+    ViewEventsComponent,
+    ViewbranchComponent,
+    EidtbranchComponent,
+    EditeventComponent,
+    CourseviewComponent,
+    EditcourseComponent
   ],
   imports: [
-    CommonModule,ReactiveFormsModule,MatToolbarModule, MatTableModule,MatIconModule,UserRoutingModule,HttpClientModule,MatInputModule,MatButtonModule,MatFormFieldModule,MatCardModule,FormsModule
+    CommonModule,ReactiveFormsModule,MatToolbarModule, MatTableModule,MatIconModule,UserRoutingModule,HttpClientModule,MatInputModule,MatButtonModule,MatFormFieldModule,MatCardModule,FormsModule,
+    MatSelectModule, MatOptionModule, MatPaginatorModule, MatSnackBarModule, MatCheckboxModule, MatDatepickerModule,MatNativeDateModule,MatRadioModule,
+
+  ],
+  providers: [
+    DatePipe 
   ]
 })
 export class UserModule { }

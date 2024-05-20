@@ -1,0 +1,91 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 75px;
+    justify-content: center;
+    padding-bottom: 30px;
+    
+}
+
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    margin-bottom: 16px;
+    
+}
+.addeventbutton{
+    margin-left: 200px;
+}
+.mat-form-field {
+    flex-basis: calc(33.33% - 16px);
+}
+button{
+    margin-left: 10px;
+    padding: 25px;
+}
+
+.students-table {
+    width: 100%;
+    border-collapse: collapse;
+    
+}
+
+
+.students-table th, .students-table td {
+    padding: 8px;
+    border: 1px solid #ddd;
+}
+
+.students-table th {
+    background-color: #f2f2f2;
+}
+
+.students-table tr:hover {
+    background-color: #f2f2f2;
+}
+
+/* .mat-icon {
+    margin: 5px;
+} */
+
+table {
+    width: 100%;
+}
+
+.table-container {
+    width: 100%;
+    margin-top: 50px; 
+}  
+
+.table-container h2 {
+    margin-left: 15px;
+    
+}
+
+.center-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%; /* Ensure the toolbar takes up the full height */
+    padding: 20px;
+    right: 0;
+}
+.add-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999; /* Ensure it's above other elements */
+  }
+  .adds{
+    margin-left: 230px;
+  }
+.eve{
+    margin-left: 50px;
+}
+.add{
+    display: flex;
+    justify-content: center;
+
+}

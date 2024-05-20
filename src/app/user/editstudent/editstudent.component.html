@@ -1,0 +1,91 @@
+<div class="container">
+
+    <div >
+        <mat-toolbar class="center-text">
+            <h2>Student Information </h2>
+        </mat-toolbar>
+
+        <!-- Student registration form for update -->
+        <form class="student-form" >
+            <mat-card class="layout-padding">
+                <mat-card-content>
+                    <label class="profile-picture">
+                        <input type="file" accept="image/*" (change)="onFileSelected($event)"/>
+                        <img *ngIf="imageUrl" [src]="imageUrl" alt="Profile Picture" class="profile-image" />
+                        <span *ngIf="!imageUrl">Choose Profile Picture</span>
+                    </label>
+                    <div class="form-row">
+                        <mat-form-field appearance="fill" style="width: 100%">
+                            <mat-label>Name</mat-label>
+                            <input matInput [(ngModel)]="newStudent.name"  name="name" [value]="newStudent.name" required>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill" style="width: 100%">
+                            <mat-label>Age</mat-label>
+                            <input matInput [(ngModel)]="newStudent.age" type="number"  name="age" [value]="newStudent.age" required>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill" style="width: 100%">
+                            <mat-label>Date of Birth</mat-label>
+                            <input matInput [(ngModel)]="newStudent.dob" type="date"  name="dob" [value]="newStudent.dob" required>
+                        </mat-form-field>
+                    </div>
+                    <div class="form-row">
+                        <mat-form-field appearance="fill" style="width: 100%">
+                            <mat-label>Address</mat-label>
+                            <input matInput  name="address" [(ngModel)]="newStudent.address" [value]="newStudent.address" required>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="fill" style="width: 50%">
+                            <mat-label>Class/Branch</mat-label>
+                            <mat-select [(ngModel)]="newStudent.class_branch" name="branch" [value]="newStudent.class_branch" required>
+                                <mat-option *ngFor="let branch of branches" [value]="branch.name">
+                                    {{ branch.name }}
+                                </mat-option>
+
+                            </mat-select>
+                        </mat-form-field>
+
+                        <button mat-raised-button type="submit" (click)="updateStudent()">Update</button>
+                    </div>
+                    <div>
+                        <h2>Parent Information</h2>
+                    </div>
+                    
+                    <div >
+                        <mat-form-field appearance="fill" style="width: 60%">
+                            <mat-label>Parent Name</mat-label>
+                            <input matInput [(ngModel)]="newStudent.parent.name"  name="Parent Name" [value]="newStudent.parent.name" >
+                        </mat-form-field>
+                        <mat-form-field appearance="fill" style="width: 60%">
+                            <mat-label>Contact Details</mat-label>
+                            <input matInput [(ngModel)]="newStudent.parent.mobile_number" type="number"  name="mobile_number" [value]="newStudent.parent.mobile_number" >
+                        </mat-form-field>
+                        <mat-form-field appearance="fill" style="width: 60%">
+                            <mat-label>Parent Email</mat-label>
+                            <input matInput [(ngModel)]="newStudent.parent.email" type="email"  name="Parent email" [value]="newStudent.parent.email" >
+                        </mat-form-field>
+                         <mat-form-field appearance="fill" style="width: 100%">
+                            <mat-label>Parent Address</mat-label>
+                            <input matInput name="address" [(ngModel)]="newStudent.parent.address" name="Parent Address" [value]="newStudent.parent.address" >
+                        </mat-form-field>
+                        
+                    </div>
+                    <ng-container *ngIf="isParentInfoFind; else noParentInfo">
+                        <div class="button-container">
+                            <button mat-raised-button (click)="addOrUpdateParent()">Add Parent</button>
+                        </div>
+                    </ng-container>
+                    
+                    <ng-template #noParentInfo>
+                        <div class="button-container">
+                            <button mat-raised-button (click)="addOrUpdateParent()">Update</button>
+                        </div>
+                    </ng-template>
+                </mat-card-content>
+            </mat-card>
+        </form>
+
+
+
+    </div>
+
+</div>

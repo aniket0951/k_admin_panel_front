@@ -8,12 +8,36 @@ import { Router } from '@angular/router';
 export class AppService {
  constructor(private http: HttpClient, private router: Router) { }
 
- // Modify httpOptions to be a function that returns the options object
- private getHttpOptions() {
-    const token = localStorage.getItem('authToken');
-    const storedToken = localStorage.getItem('authToken');
-    console.log('Stored Token:', storedToken);
-    console.log("token prints --> ",token)
+public getToken():string{
+  const token = localStorage.getItem('authToken');
+  return token ? token : ""
+} 
+
+public getMultiPartOptions() {
+  const token = localStorage.getItem('authToken');
+
+    if(!token){
+      const headers = new HttpHeaders({
+        'Content-Type': 'multipart/form-data', 
+        'Access-Control-Allow-Origin': 'true',
+        'Allow-access': 'true'  });
+        console.log("not token ",headers);
+        return { headers };
+    }
+      const headers = new HttpHeaders({
+        'Content-Type': 'multipart/form-data',
+        'Access-Control-Allow-Origin': 'true',
+        'Authorization': token, // Assuming the token is a Bearer token
+        'Allow-access': 'true' 
+      });
+      console.log("token ",headers);
+      return { headers };
+  
+}
+
+ public getHttpOptions() {
+  const token = localStorage.getItem('authToken');
+
     if(!token){
       const headers = new HttpHeaders({
         'Content-Type': 'application/json', 
@@ -30,13 +54,23 @@ export class AppService {
       });
       console.log("token ",headers);
       return { headers };
-    
-   
  }
 
  postRequest(url: string, data: any) {
     // Use the getHttpOptions function to get the current httpOptions
     return this.http.post<any>(url, data,  this.getHttpOptions());
+ }
+
+ putRequest(url:string, data:any) {
+  return this.http.put<any>(url, data, this.getHttpOptions())
+ }
+
+ deleteRequest(url:string) {
+  return this.http.delete<any>(url, this.getHttpOptions())
+ }
+
+ postMultipartRequest(url:string, data:any) {
+  return this.http.post<any>(url, data,  this.getMultiPartOptions());
  }
 
  getRequest(url: string) {

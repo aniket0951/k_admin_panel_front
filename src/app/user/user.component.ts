@@ -17,7 +17,7 @@ export class UserComponent {
 
   addEvent(): void {
     console.log('addEvent')
-    this.router.navigate(['/addevent']); // Navigate to the "studentregister" route
+    this.router.navigate(['/viewevents']); // Navigate to the "studentregister" route
   }
   addstudent(): void {
     this.router.navigate(['/studentregister']); // Navigate to the "studentregister" route
@@ -25,5 +25,14 @@ export class UserComponent {
   addadmin(): void {
     this.router.navigate(['/addadmin']); // Navigate to the "studentregister" route
   }
+
+  viewbranches():void {
+    this.router.navigate(['viewbranch'])
+  }
+
+  viewcourse(): void{
+    this.router.navigate(['course'])
+  }
+
 }
 

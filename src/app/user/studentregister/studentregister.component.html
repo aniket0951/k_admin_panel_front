@@ -1,9 +1,9 @@
 <div class="container">
     <!-- Button to toggle add student section -->
-    
-    <button mat-raised-button color="primary" class="add-button" (click)="toggleAddStudent()">ADD +</button>
 
-    <div  [@slideInOut]="addStudentVisible">
+    <button mat-raised-button color="primary" class="add-button" (click)="toggleAddStudent(true)">ADD +</button>
+
+    <div [@slideInOut]="addStudentVisible">
         <mat-toolbar class="center-text">
             <span>ADD Student</span>
         </mat-toolbar>
@@ -30,53 +30,167 @@
                             <mat-label>Address</mat-label>
                             <input matInput [(ngModel)]="newStudent.address" name="address" required>
                         </mat-form-field>
+
                         <mat-form-field>
                             <mat-label>Class/Branch</mat-label>
-                            <input matInput [(ngModel)]="newStudent.class_branch" name="class_branch" required>
+                            <mat-select [(ngModel)]="newStudent.class_branch" name="branch" required>
+                                <mat-option *ngFor="let branch of branches" [value]="branch.name">
+                                    {{ branch.name }}
+                                </mat-option>
+
+                            </mat-select>
                         </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>Levels</mat-label>
+                            <mat-select [(ngModel)]="newStudent.level" name="level" required>
+                                <mat-option *ngFor="let level of level" [value]="level">
+                                    {{level}}
+                                </mat-option>
+
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="form-row">
+                        <mat-form-field>
+                            <mat-label>BloodGroup</mat-label>
+                            <input matInput [(ngModel)]="newStudent.blood_group" name="blood_group" required>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>Weight</mat-label>
+                            <input matInput type="number" [(ngModel)]="newStudent.weight" name="weight" required>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>School Name</mat-label>
+                            <input matInput [(ngModel)]="newStudent.school_name" name="school_name" required>
+                        </mat-form-field>
+                    </div>
+                    <div class="form-row">
+                        <mat-form-field>
+                            <mat-label>Aadhar Number</mat-label>
+                            <input matInput [(ngModel)]="newStudent.addhar_number" name="aadhar_number" required>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>Gender</mat-label>
+                            <mat-select [(ngModel)]="newStudent.geneder" name="gender" required>
+                                <mat-option *ngFor="let geneder of geneder" [value]="geneder">
+                                    {{geneder}}
+                                </mat-option>
+
+                            </mat-select>
+                        </mat-form-field>
+                        
+                    
                         <button mat-raised-button type="submit">Add Student</button>
                     </div>
                 </mat-card-content>
             </mat-card>
         </form>
-    
+
     </div>
-   
+
+
+
+    <div class="table-container mat-elevation-z8">
+        <h2>Students</h2>
+        <mat-form-field>
+            <mat-label>Search by Level</mat-label>
+            <input matInput (keyup)="applyNameFilter($event)" placeholder="Enter level">
+            <button mat-button matSuffix color="primary" (click)="clearNameFilter()">Clear</button>
+        </mat-form-field>
+        <mat-table [dataSource]="dataSource">
+            <!-- Define table columns -->
+            <ng-container matColumnDef="Name">
+                <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+                <mat-cell *matCellDef="let row">{{ row.name }}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="Age">
+                <mat-header-cell *matHeaderCellDef>Age</mat-header-cell>
+                <mat-cell *matCellDef="let row">{{ row.age }}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="DOB">
+                <mat-header-cell *matHeaderCellDef>DOB</mat-header-cell>
+                <mat-cell *matCellDef="let row">{{ row.dob }}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="Address">
+                <mat-header-cell *matHeaderCellDef>Address</mat-header-cell>
+                <mat-cell *matCellDef="let row">{{ row.address }}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="Branch">
+                <mat-header-cell *matHeaderCellDef>Branch</mat-header-cell>
+                <mat-cell *matCellDef="let row">{{ row.class_branch }}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="Levels">
+                <mat-header-cell *matHeaderCellDef>Levels</mat-header-cell>
+                <mat-cell *matCellDef="let row">{{ row.level}}</mat-cell>
+            </ng-container>
+            
+
+            <ng-container matColumnDef="Action">
+                <mat-header-cell *matHeaderCellDef>Action</mat-header-cell>
+                <mat-cell *matCellDef="let row">
+
+                    <button mat-icon-button color="primary" (click)="editStudent(row)">
+                        <mat-icon>edit</mat-icon>
+                    </button> 
+
+                    <button mat-icon-button color="primary">
+                        <mat-icon>delete</mat-icon>
+                    </button> 
+
+                </mat-cell>
+            </ng-container>
+
+
+            <!-- Table rows -->
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+        <mat-paginator [pageSizeOptions]="customPageSizeOptions" [pageSize]="defaultPageSize" [length]="totalRecords"
+            (page)="onPageChange($event)" showFirstLastButtons></mat-paginator>
+    </div>
+
     <!-- Display list of already registered students -->
-    <div class="student-list">
-        <h2>Registered Students</h2>
-        <table class="students-table">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Age</th>
-                    <th>Date of Birth</th>
-                    <th>Address</th>
-                    <th>Class/Branch</th>
-                    <th>Delete</th>
-                    <th>Edit</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let student of students">
-                    <td>{{ student.name }}</td>
-                    <td>{{ student.age }}</td>
-                    <td>{{ student.dob }}</td>
-                    <td>{{ student.address }}</td>
-                    <td>{{ student.class_branch }}</td>
-                    <td>
-                        <button mat-icon-button color="primary" (click)="editStudent(student)">
-                            <mat-icon>delete</mat-icon>
-                        </button>
-                    </td>
-                    <td>
-                        <button mat-icon-button color="warn" (click)="deleteStudent(student)">
-                            <mat-icon>delete</mat-icon>
-                        </button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    
-    </div>
+    <!-- <div class="student-list">
+        <h2>Students</h2>
+        <div class="table-container">
+            <table class="students-table">
+                <thead>
+                    <tr>
+                        <th class="fixed-header">Name</th>
+                        <th class="fixed-header">Age</th>
+                        <th class="fixed-header">Date of Birth</th>
+                        <th class="fixed-header">Address</th>
+                        <th class="fixed-header">Class/Branch</th>
+                        <th class="fixed-header">Delete</th>
+                        <th class="fixed-header">Edit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let student of students">
+                        <td>{{ student.name }}</td>
+                        <td>{{ student.age }}</td>
+                        <td>{{ student.dob }}</td>
+                        <td>{{ student.address }}</td>
+                        <td>{{ student.class_branch }}</td>
+                        <td>
+                            <button mat-icon-button color="primary" (click)="editStudent(student)">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                        </td>
+                        <td>
+                            <button mat-icon-button color="warn" (click)="deleteStudent(student)">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        
+        </div>
+    </div> -->
 </div>

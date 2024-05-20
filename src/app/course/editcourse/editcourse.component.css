@@ -1,0 +1,38 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* padding-top: 75px; */
+    height: 100vh; 
+    justify-content: center;
+    
+}
+
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+}
+
+.mat-form-field {
+    flex-basis: calc(33.33% - 16px);
+}
+button{
+    margin-left: 10px;
+    padding: 25px;
+}
+
+
+.button-container {
+    float: left;
+}
+
+/* copied ! */
+.student-form{
+	/* margin-top: 110px;
+	 */
+	 align-self: center;
+}
+.full-width-checkbox {
+    width: 100%;
+  }

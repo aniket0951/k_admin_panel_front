@@ -1,0 +1,157 @@
+<div class="container">
+    <!-- Button to toggle add student section -->
+
+    <button mat-raised-button color="primary" class="add-button" (click)="toggleAddStudent()">ADD +</button>
+
+    <div [@slideInOut]="addCourseVisible">
+        <mat-toolbar class="center-text">
+            <span>Add Branch</span>
+        </mat-toolbar>
+        <!-- Student registration form using Angular Material -->
+        <form class="student-form" (ngSubmit)="addCourse()">
+            <mat-card class="layout-padding">
+                <mat-card-content>
+                    <div class="form-row">
+                        <mat-form-field appearance="fill" style="width: 100%;">
+                            <mat-label>Course Name</mat-label>
+                            <input matInput [(ngModel)]="newCourse.name"  name="name" required>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="fill" style="width: 100%;">
+                            <mat-label>Course Description</mat-label>
+                            <textarea matInput [(ngModel)]="newCourse.description" name="description" rows="5" required></textarea>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="fill" style="width: 100%;">
+                            <mat-label>Course Duration</mat-label>
+                            <input matInput [(ngModel)]="newCourse.course_duration"  name="discription" required>
+                        </mat-form-field>
+
+                        <button mat-raised-button type="submit">Add Course</button>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </form>
+
+    </div>
+
+    <div class="table-container mat-elevation-z8">
+        <h2>Courses</h2>
+        <mat-table [dataSource]="dataSource" class="full-width-table">
+            <!-- Define table columns -->
+            <ng-container matColumnDef="Name">
+                <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+                <mat-cell *matCellDef="let row">{{ row.name }}</mat-cell>
+            </ng-container>
+    
+            <ng-container matColumnDef="Description">
+                <mat-header-cell *matHeaderCellDef>Description</mat-header-cell>
+                <mat-cell *matCellDef="let row" class="description-cell">{{ row.description }}</mat-cell>
+            </ng-container>
+    
+            <ng-container matColumnDef="Course Duration">
+                <mat-header-cell *matHeaderCellDef>Course Duration</mat-header-cell>
+                <mat-cell *matCellDef="let row">{{ row.course_duration }}</mat-cell>
+            </ng-container>
+    
+            <ng-container matColumnDef="Status">
+                <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
+                <mat-cell *matCellDef="let row">
+                    <div fxLayout="row" fxLayoutAlign="start center" class="status-container">
+                        <ng-container *ngIf="row.is_active">
+                            <h4 class="status-header">ACTIVE</h4>
+                            <button mat-raised-button type="button" (click)="changeStatus(false, row.id)" style="background-color: red; color: white; margin-left: 30px;" class="status-button active-button">
+                                Deactivate
+                            </button>
+                        </ng-container>
+                        <ng-container *ngIf="!row.is_active">
+                            <h4 class="status-header">DEACTIVE</h4>
+                            <button mat-raised-button type="button" (click)="changeStatus(true, row.id)" class="status-button" style="background-color: green; color: white;">
+                                Activate
+                            </button>
+                        </ng-container>
+                    </div>
+                </mat-cell>
+            </ng-container>
+    
+            <ng-container matColumnDef="Action">
+                <mat-header-cell *matHeaderCellDef>Action</mat-header-cell>
+                <mat-cell *matCellDef="let row">
+                    <button mat-icon-button color="primary" (click)="editCourse(row)">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                    <button mat-icon-button color="primary" (click)="deleteCourse(row.id)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </mat-cell>
+            </ng-container>
+    
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+    </div>
+    
+
+
+    <!-- <div class="table-container mat-elevation-z8">
+        <h2>Courses</h2>
+        <mat-table [dataSource]="dataSource" class="full-width-table">
+            <ng-container matColumnDef="Name">
+                <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+                <mat-cell *matCellDef="let row">{{ row.name }}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="Description">
+                <mat-header-cell *matHeaderCellDef>Description</mat-header-cell>
+                <mat-cell *matCellDef="let row">{{ row.description }}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="Course Duration">
+                <mat-header-cell *matHeaderCellDef>Course Duration</mat-header-cell>
+                <mat-cell *matCellDef="let row">{{ row.course_duration }}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="Status">
+                <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
+                <mat-cell *matCellDef="let row">
+                  <div fxLayout="row" fxLayoutAlign="start center" class="status-container">
+                    <ng-container *ngIf="row.is_active">
+                      <h4 class="status-header">ACTIVE</h4>
+                      <button mat-raised-button type="button" class="status-button active-button">
+                        Deactivate
+                      </button>
+                    </ng-container>
+                    <ng-container *ngIf="!row.is_active">
+                      <h4 class="status-header">DEACTIVE</h4>
+                      <button mat-raised-button type="button" class="status-button">
+                        Activate
+                      </button>
+                    </ng-container>
+                  </div>
+                </mat-cell>
+              </ng-container>
+              
+
+            <ng-container matColumnDef="Action">
+                <mat-header-cell *matHeaderCellDef>Action</mat-header-cell>
+                <mat-cell *matCellDef="let row">
+
+                    <button mat-icon-button color="primary" (click)="editCourse(row)">
+                        <mat-icon>edit</mat-icon>
+                    </button> 
+
+                    <button mat-icon-button color="primary" (click)="deleteCourse(row.id)">
+                        <mat-icon>delete</mat-icon>
+                    </button> 
+
+                </mat-cell>
+            </ng-container>
+
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+        
+    </div> -->
+
+</div>

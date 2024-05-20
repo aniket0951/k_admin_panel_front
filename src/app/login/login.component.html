@@ -6,8 +6,8 @@
         </div>
         <form [formGroup]="loginForm" (ngSubmit)="submitLoginForm()" name="addetails">
           <div class="field">
-            <input type="text" required formControlName="email">
-            <label>User Name</label>
+            <input type="email" name="email" required formControlName="email">
+            <label>Email </label>
           </div>
           <div class="field">
             <input type="password" required formControlName="password">
@@ -15,10 +15,10 @@
           </div>
       
           <div class="content">
-            <div class="checkbox">
+            <!-- <div class="checkbox">
               <input type="checkbox" id="remember-me">
               <label for="remember-me">Remember me</label>
-            </div>
+            </div> -->
             <div class="pass-link">
               <a href="#">Forgot password?</a>
             </div>
