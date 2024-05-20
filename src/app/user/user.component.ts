@@ -30,5 +30,9 @@ export class UserComponent {
     this.router.navigate(['viewbranch'])
   }
 
+  viewcourse(): void{
+    this.router.navigate(['course'])
+  }
+
 }
 

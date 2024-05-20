@@ -29,7 +29,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { DatePipe } from '@angular/common';
 import { EditeventComponent } from './event/editevent/editevent.component';
 import { MatRadioModule } from '@angular/material/radio';
-
+import { CourseviewComponent } from '../course/courseview/courseview.component';
+import { EditcourseComponent } from '../course/editcourse/editcourse.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,9 @@ import { MatRadioModule } from '@angular/material/radio';
     ViewEventsComponent,
     ViewbranchComponent,
     EidtbranchComponent,
-    EditeventComponent
+    EditeventComponent,
+    CourseviewComponent,
+    EditcourseComponent
   ],
   imports: [
     CommonModule,ReactiveFormsModule,MatToolbarModule, MatTableModule,MatIconModule,UserRoutingModule,HttpClientModule,MatInputModule,MatButtonModule,MatFormFieldModule,MatCardModule,FormsModule,

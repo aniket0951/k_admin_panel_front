@@ -25,6 +25,15 @@ const TOTAL_EVENT_COUNT = BASEURL + "/event/total-event"
 const ADD_EVENT = BASEURL + "/event/add-event"
 const GET_EVENT = BASEURL + "/event/get-event/"
 
+
+// ------------------  COURSES ------------------------------ //
+const LIST_COURSES = BASEURL + "/app/list-course"
+const ADD_COURSE = BASEURL +  "/app/add-course"
+const DELETE_COURSE = BASEURL + "/app/delete-course/"
+const ACTIVE_COURSE = BASEURL + "/app/active-course"
+const GET_COURSE = BASEURL + "/app/get-course/"
+const UPDATE_COURSE = BASEURL + "/app/update-course"
+
 export {
     BASEURL,
     GET_STUDENTS,
@@ -41,5 +50,11 @@ export {
     GET_EVENTS,
     TOTAL_EVENT_COUNT,
     ADD_EVENT,
-    GET_EVENT
+    GET_EVENT,
+    LIST_COURSES,
+    ADD_COURSE,
+    DELETE_COURSE,
+    ACTIVE_COURSE,
+    GET_COURSE,
+    UPDATE_COURSE
 }

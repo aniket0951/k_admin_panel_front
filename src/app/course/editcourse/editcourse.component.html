@@ -1,0 +1,36 @@
+<div class="container">
+
+    <div>
+        <mat-toolbar class="center-text">
+            <span>Edit Course</span>
+        </mat-toolbar>
+        <!-- Student registration form using Angular Material -->
+        <form class="student-form" (ngSubmit)="updateCourse()">
+            <mat-card class="layout-padding">
+                <mat-card-content>
+                    <div class="form-row">
+                        <mat-form-field appearance="fill" style="width: 100%;">
+                            <mat-label>Course Name</mat-label>
+                            <input matInput [(ngModel)]="course.name" name="name" required>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="fill" style="width: 100%;">
+                            <mat-label>Course Description</mat-label>
+                            <textarea matInput [(ngModel)]="course.description" name="description" rows="5"
+                                required></textarea>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="fill" style="width: 100%;">
+                            <mat-label>Course Duration</mat-label>
+                            <input matInput [(ngModel)]="course.course_duration" name="discription" required>
+                        </mat-form-field>
+
+                        <button mat-raised-button type="submit">Edit Course</button>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </form>
+
+    </div>
+
+</div>

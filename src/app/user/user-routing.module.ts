@@ -9,6 +9,8 @@ import { ViewEventsComponent } from './event/view-events/view-events.component';
 import { ViewbranchComponent } from '../branch/viewbranch/viewbranch.component';
 import { EidtbranchComponent } from '../branch/eidtbranch/eidtbranch.component';
 import { EditeventComponent } from './event/editevent/editevent.component';
+import { CourseviewComponent } from '../course/courseview/courseview.component';
+import { EditcourseComponent } from '../course/editcourse/editcourse.component';
 
 const routes: Routes = [
   {
@@ -18,11 +20,13 @@ const routes: Routes = [
       { path: 'addevent', component: AddeventsComponent },
       { path: 'studentregister', component: StudentregisterComponent },
       { path: 'addadmin', component: AddadminComponent },
-      { path: 'editstudent', component:EditstudentComponent},
-      { path: 'viewevents', component:ViewEventsComponent},
-      { path: 'viewbranch', component:ViewbranchComponent},
-      { path: 'editbranch', component:EidtbranchComponent},
-      { path: 'editevents', component:EditeventComponent}
+      { path: 'editstudent', component: EditstudentComponent },
+      { path: 'viewevents', component: ViewEventsComponent },
+      { path: 'viewbranch', component: ViewbranchComponent },
+      { path: 'editbranch', component: EidtbranchComponent },
+      { path: 'editevents', component: EditeventComponent },
+      { path: 'course', component: CourseviewComponent },
+      { path: 'editcourse', component:EditcourseComponent}
     ]
   }
 ];

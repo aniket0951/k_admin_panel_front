@@ -65,6 +65,10 @@ public getMultiPartOptions() {
   return this.http.put<any>(url, data, this.getHttpOptions())
  }
 
+ deleteRequest(url:string) {
+  return this.http.delete<any>(url, this.getHttpOptions())
+ }
+
  postMultipartRequest(url:string, data:any) {
   return this.http.post<any>(url, data,  this.getMultiPartOptions());
  }
