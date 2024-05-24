@@ -31,7 +31,7 @@ import { EditeventComponent } from './event/editevent/editevent.component';
 import { MatRadioModule } from '@angular/material/radio';
 import { CourseviewComponent } from '../course/courseview/courseview.component';
 import { EditcourseComponent } from '../course/editcourse/editcourse.component';
-
+import { ViewfacilitesComponent } from '../facilities/viewfacilites/viewfacilites.component';
 @NgModule({
   declarations: [
     LoginComponent,
@@ -45,7 +45,8 @@ import { EditcourseComponent } from '../course/editcourse/editcourse.component';
     EidtbranchComponent,
     EditeventComponent,
     CourseviewComponent,
-    EditcourseComponent
+    EditcourseComponent,
+    ViewfacilitesComponent
   ],
   imports: [
     CommonModule,ReactiveFormsModule,MatToolbarModule, MatTableModule,MatIconModule,UserRoutingModule,HttpClientModule,MatInputModule,MatButtonModule,MatFormFieldModule,MatCardModule,FormsModule,

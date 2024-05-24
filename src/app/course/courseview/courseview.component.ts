@@ -110,7 +110,6 @@ export class CourseviewComponent implements OnInit {
   addCourse():void {
     this.appService.postRequest(ADD_COURSE, this.newCourse).subscribe((response:any) => {
       if(response) {
-        this.toggleAddStudent()
 
         Swal.fire({
           position: "top-end",
