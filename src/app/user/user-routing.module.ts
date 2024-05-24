@@ -11,6 +11,7 @@ import { EidtbranchComponent } from '../branch/eidtbranch/eidtbranch.component';
 import { EditeventComponent } from './event/editevent/editevent.component';
 import { CourseviewComponent } from '../course/courseview/courseview.component';
 import { EditcourseComponent } from '../course/editcourse/editcourse.component';
+import { ViewfacilitesComponent } from '../facilities/viewfacilites/viewfacilites.component';
 
 const routes: Routes = [
   {
@@ -26,7 +27,9 @@ const routes: Routes = [
       { path: 'editbranch', component: EidtbranchComponent },
       { path: 'editevents', component: EditeventComponent },
       { path: 'course', component: CourseviewComponent },
-      { path: 'editcourse', component:EditcourseComponent}
+      { path: 'editcourse', component:EditcourseComponent},
+      { path: 'viewfacilities', component:ViewfacilitesComponent},
+
     ]
   }
 ];

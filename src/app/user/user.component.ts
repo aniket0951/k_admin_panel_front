@@ -34,5 +34,9 @@ export class UserComponent {
     this.router.navigate(['course'])
   }
 
+  viewfacilities():void{
+    this.router.navigate(['viewfacilities'])
+  }
+
 }
 

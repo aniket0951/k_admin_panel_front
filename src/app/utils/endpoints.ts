@@ -34,6 +34,13 @@ const ACTIVE_COURSE = BASEURL + "/app/active-course"
 const GET_COURSE = BASEURL + "/app/get-course/"
 const UPDATE_COURSE = BASEURL + "/app/update-course"
 
+// ------------------  FACILITIES ------------------------------ //
+const LIST_FACILITIES = BASEURL + "/app/list_facilities"
+const ADD_FACILITIES = BASEURL + "/app/add_facilities"
+const DELETE_FACILITIES = BASEURL + "/app/delete_facilities/"
+const GET_FACILITIES = BASEURL + "/app/get_facilities/"
+const UPDATE_FACILITIES = BASEURL + "/app/update_facilities/"
+
 export {
     BASEURL,
     GET_STUDENTS,
@@ -56,5 +63,10 @@ export {
     DELETE_COURSE,
     ACTIVE_COURSE,
     GET_COURSE,
-    UPDATE_COURSE
+    UPDATE_COURSE,
+    LIST_FACILITIES,
+    ADD_FACILITIES,
+    DELETE_FACILITIES,
+    GET_FACILITIES,
+    UPDATE_FACILITIES
 }

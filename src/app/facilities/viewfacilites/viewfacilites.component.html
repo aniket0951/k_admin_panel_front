@@ -1,0 +1,98 @@
+<div class="container">
+    <!-- Button to toggle add student section -->
+
+    <button mat-raised-button color="primary" class="add-button" (click)="toggleAddStudent()">ADD +</button>
+
+    <div [@slideInOut]="addFacilityVisible">
+        <mat-toolbar class="center-text">
+            <span>Add Facility</span>
+        </mat-toolbar>
+        <!-- Student registration form using Angular Material -->
+        <form class="student-form" (ngSubmit)="addFacility()">
+            <mat-card class="layout-padding">
+                <mat-card-content>
+                    <div class="form-row">
+                        <mat-form-field appearance="fill" style="width: 100%;">
+                            <mat-label>Title</mat-label>
+                            <input matInput [(ngModel)]="newFacility.title" name="branch_name" required>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="fill" style="width: 100%;">
+                            <mat-label>Description</mat-label>
+                            <input matInput [(ngModel)]="newFacility.description" name="branch_address" required>
+                        </mat-form-field>
+
+                        <button mat-raised-button type="submit">Add Facility</button>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </form>
+
+    </div>
+
+    <div *ngIf="editFacilityVisible">
+        <mat-toolbar class="center-text">
+            <span>Edit Facility</span>
+        </mat-toolbar>
+        <!-- Student registration form using Angular Material -->
+        <form class="student-form" (ngSubmit)="updateFacility()">
+            <mat-card class="layout-padding">
+                <mat-card-content>
+                    <div class="form-row">
+                        <mat-form-field appearance="fill" style="width: 100%;">
+                            <mat-label>Title</mat-label>
+                            <input matInput [(ngModel)]="newFacility.title" name="branch_name" required>
+                        </mat-form-field>
+    
+                        <mat-form-field appearance="fill" style="width: 100%;">
+                            <mat-label>Description</mat-label>
+                            <input matInput [(ngModel)]="newFacility.description" name="branch_address" required>
+                        </mat-form-field>
+    
+                        <button mat-raised-button type="submit">Edit Facility</button>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </form>
+    </div>
+
+
+
+    <div class="table-container mat-elevation-z8">
+        <h2>Facilities</h2>
+        <mat-table [dataSource]="dataSource">
+            <!-- Define table columns -->
+            <ng-container matColumnDef="Title">
+                <mat-header-cell *matHeaderCellDef>Title</mat-header-cell>
+                <mat-cell *matCellDef="let row">{{ row.title }}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="Description">
+                <mat-header-cell *matHeaderCellDef>Description</mat-header-cell>
+                <mat-cell *matCellDef="let row">{{ row.description }}</mat-cell>
+            </ng-container>
+
+
+            <ng-container matColumnDef="Action">
+                <mat-header-cell *matHeaderCellDef>Action</mat-header-cell>
+                <mat-cell *matCellDef="let row">
+
+                    <button mat-icon-button color="primary" (click)="editFacility(row?.id)">
+                        <mat-icon>edit</mat-icon>
+                    </button> 
+
+                    <button mat-icon-button color="primary" (click)="deleteFacility(row?.id)">
+                        <mat-icon>delete</mat-icon>
+                    </button> 
+
+                </mat-cell>
+            </ng-container>
+
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+        
+    </div>
+
+</div>
