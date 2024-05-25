@@ -1,14 +1,14 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { AppService } from 'src/app/service/app.service';
 import { trigger, state, style, animate, transition, group } from '@angular/animations';
-import { LIST_FACILITIES, ADD_FACILITIES, DELETE_FACILITIES, GET_FACILITIES, UPDATE_FACILITIES } from 'src/app/utils/endpoints';
+import { LIST_FACILITIES, ADD_FACILITIES, DELETE_FACILITIES, GET_FACILITIES, UPDATE_FACILITIES, UPLOAD_FACILITY_IMAGE } from 'src/app/utils/endpoints';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { PageEvent } from '@angular/material/paginator';
-
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 AppService
 
@@ -59,7 +59,8 @@ interface Facilities {
   ]
 })
 export class ViewfacilitesComponent implements OnInit {
-  
+  @ViewChild('fileInput') fileInput: ElementRef | null = null;
+  facilityID:any;
   facilities:any = [];
   newFacility:Facilities = {
     id:'',
@@ -68,18 +69,32 @@ export class ViewfacilitesComponent implements OnInit {
     imageURL: ''
   };
 
+  file:any;
+
   editFacilityVisible: boolean = false; 
   addFacilityVisible: string = 'out';
   displayedColumns: string[] = ['Title','Description', 'Action']; // Add more column names as needed
   dataSource!: MatTableDataSource<Facilities>;
   
-  constructor(private formBuilder: FormBuilder, private appService: AppService, private router:Router) {
+  constructor(private formBuilder: FormBuilder, private http: HttpClient, private appService: AppService, private router:Router) {
   }
 
 
   toggleAddStudent() {
     this.editFacilityVisible = false
     this.addFacilityVisible = this.addFacilityVisible === 'out' ? 'in' : 'out';
+    if (this.newFacility.title != "") {
+      this.resetFacilities()
+    }
+  }
+
+  resetFacilities():void{
+    this.newFacility = {
+      id: '',
+      title: '',
+      description: '',
+      imageURL: ''
+    };
   }
 
   ngOnInit(): void {
@@ -93,9 +108,18 @@ export class ViewfacilitesComponent implements OnInit {
         this.dataSource = new MatTableDataSource(response.data);
        
       }
-    }, (error) => {
-
     })
+  }
+
+  onFileSelected(event: any) {
+    this.file = event.target.files[0];
+    if (this.file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.newFacility.imageURL = reader.result as string;
+      };
+      reader.readAsDataURL(this.file);
+    }
   }
 
   addFacility():void{
@@ -133,16 +157,15 @@ export class ViewfacilitesComponent implements OnInit {
   editFacility(data:any):void{
     this.appService.getRequest(GET_FACILITIES + data).subscribe((response:any)=>{
       if(response) {
-        console.log("RESPONSE :", response.data);
         
         this.newFacility.title = response.data?.title
         this.newFacility.description = response.data?.description
-        this.newFacility.imageURL = response.data?.imageURL
+        this.newFacility.imageURL = response.data?.imageUrl
         this.newFacility.id = response.data?.id
+        this.facilityID = this.newFacility.id
       }
-    }, (error) => {
-
     })
+
     this.editFacilityVisible = !this.editFacilityVisible
   }
 
@@ -190,6 +213,46 @@ export class ViewfacilitesComponent implements OnInit {
     })
     this.editFacilityVisible = !this.editFacilityVisible
 
+  }
+
+  triggerFileInput() {
+    if (this.fileInput) {
+      this.fileInput.nativeElement.click();
+    }
+  }
+
+  chooseImage() {
+    if (this.fileInput) {
+      this.fileInput.nativeElement.click();
+    }
+  }
+
+  uploadImage():void{
+    
+    const token = this.appService.getToken();
+
+    var formData: any = new FormData();
+    formData.append("file", this.file);
+
+
+    const headers = new HttpHeaders();
+    headers.set('Content-Type', 'multipart/form-data');
+    headers.set('Authorization', token);
+  
+
+    this.http.post<any>(UPLOAD_FACILITY_IMAGE + this.facilityID, formData, { headers }).subscribe(
+      (response) => {
+        if (response) {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: response?.message,
+            showConfirmButton: false,
+            timer: 1500
+          });
+        }
+      }
+    );
   }
 
   deleteFacility(id:any):void{

@@ -40,6 +40,7 @@ const ADD_FACILITIES = BASEURL + "/app/add_facilities"
 const DELETE_FACILITIES = BASEURL + "/app/delete_facilities/"
 const GET_FACILITIES = BASEURL + "/app/get_facilities/"
 const UPDATE_FACILITIES = BASEURL + "/app/update_facilities/"
+const UPLOAD_FACILITY_IMAGE = BASEURL + "/app/uploade_facility_image/"
 
 export {
     BASEURL,
@@ -68,5 +69,6 @@ export {
     ADD_FACILITIES,
     DELETE_FACILITIES,
     GET_FACILITIES,
-    UPDATE_FACILITIES
+    UPDATE_FACILITIES,
+    UPLOAD_FACILITY_IMAGE
 }
