@@ -40,16 +40,34 @@
                 <mat-card-content>
                     <div class="form-row">
                         <mat-form-field appearance="fill" style="width: 100%;">
+                            <mat-label>Image URL</mat-label>
+                            <input matInput [(ngModel)]="newFacility.imageURL" name="facility_imageURL">
+                        </mat-form-field>
+
+                    <button mat-raised-button type="button" (click)="chooseImage()" *ngIf="!newFacility.imageURL">Choose Image</button>
+
+                    <div *ngIf="newFacility.imageURL" style="text-align: center; margin: 20px 0;">
+                        <img [src]="newFacility.imageURL" alt="Facility Image" style="width: 200px; height: 150px;">
+                        <div style="margin-top: 10px;">
+                            <button mat-raised-button type="button" (click)="triggerFileInput()">Reselect Image</button>
+                            <button mat-raised-button type="button" (click)="uploadImage()">Upload Image</button>
+                        </div>
+                    </div>
+                    <input type="file" (change)="onFileSelected($event)" #fileInput style="display: none;">
+               
+
+
+                        <mat-form-field appearance="fill" style="width: 100%;">
                             <mat-label>Title</mat-label>
                             <input matInput [(ngModel)]="newFacility.title" name="branch_name" required>
                         </mat-form-field>
-    
+
                         <mat-form-field appearance="fill" style="width: 100%;">
                             <mat-label>Description</mat-label>
                             <input matInput [(ngModel)]="newFacility.description" name="branch_address" required>
                         </mat-form-field>
-    
-                        <button mat-raised-button type="submit">Edit Facility</button>
+
+                        <button mat-raised-button type="submit">Update Facility</button>
                     </div>
                 </mat-card-content>
             </mat-card>
@@ -79,11 +97,11 @@
 
                     <button mat-icon-button color="primary" (click)="editFacility(row?.id)">
                         <mat-icon>edit</mat-icon>
-                    </button> 
+                    </button>
 
                     <button mat-icon-button color="primary" (click)="deleteFacility(row?.id)">
                         <mat-icon>delete</mat-icon>
-                    </button> 
+                    </button>
 
                 </mat-cell>
             </ng-container>
@@ -92,7 +110,7 @@
             <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
             <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
         </mat-table>
-        
+
     </div>
 
 </div>
