@@ -46,7 +46,7 @@ button{
     margin: 5px;
 } */
 
-table {
+/* table {
     width: 100%;
 }
 
@@ -63,7 +63,7 @@ table {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%; /* Ensure the toolbar takes up the full height */
+    height: 100%; 
     padding: 20px;
     right: 0;
 }
@@ -71,23 +71,70 @@ table {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    z-index: 9999; /* Ensure it's above other elements */
+    z-index: 9999;
   }
 
 
   .table-container {
     display: flex;
     flex-direction: column;
-}
+} */
 
-.search-container {
+/* .search-container {
     display: flex;
     justify-content: flex-end;
-    margin-bottom: 10px; /*lastly edited one --- as needed */
+    margin-bottom: 10px; 
     margin-left: 200px;
     padding-left: 200px;
 }
 
 .search-field {
     width: 10px; 
+} */
+
+
+
+
+.table-container {
+    width: 100%;
+    overflow: auto;
+    margin-top: 20px;
 }
+
+mat-table {
+    width: 100%;
+}
+
+mat-header-cell, mat-cell {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+mat-header-cell {
+    font-weight: bold;
+}
+
+mat-header-cell, mat-cell {
+    padding: 8px;
+}
+
+mat-column-Name {
+    flex: 2 2 auto; /* Adjust flex value based on desired column width */
+}
+
+mat-column-Age, 
+mat-column-DOB, 
+mat-column-Address, 
+mat-column-Branch, 
+mat-column-Levels, 
+mat-column-Action {
+    flex: 1 1 auto; /* Adjust flex value based on desired column width */
+}
+
+.add-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+  }

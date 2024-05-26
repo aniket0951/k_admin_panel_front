@@ -25,9 +25,38 @@
                         </mat-form-field>
                         <mat-form-field appearance="fill" style="width: 100%">
                             <mat-label>Date of Birth</mat-label>
-                            <input matInput [(ngModel)]="newStudent.dob" type="date"  name="dob" [value]="newStudent.dob" required>
+                            <input matInput [(ngModel)]="newStudent.dob"   name="dob" [value]="newStudent.dob" required>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill" style="width: 100%">
+                            <mat-label>Level</mat-label>
+                            <input matInput [(ngModel)]="newStudent.level"   name="level" [value]="newStudent.level" required>
                         </mat-form-field>
                     </div>
+
+
+                    <div class="form-row">
+                        <mat-form-field appearance="fill" style="width: 100%">
+                            <mat-label>Blood Group </mat-label>
+                            <input matInput [(ngModel)]="newStudent.blood_group"  name="BloodGroup" [value]="newStudent.blood_group" required>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill" style="width: 100%">
+                            <mat-label>Weight</mat-label>
+                            <input matInput [(ngModel)]="newStudent.weight" type="number"  name="weight" [value]="newStudent.weight" required>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill" style="width: 100%">
+                            <mat-label>School Name</mat-label>
+                            <input matInput [(ngModel)]="newStudent.school_name"  name="school_name" [value]="newStudent.school_name" required>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill" style="width: 100%">
+                            <mat-label>Adhar Number</mat-label>
+                            <input matInput [(ngModel)]="newStudent.addhar_number"   name="addhar_number" [value]="newStudent.addhar_number" required>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill" style="width: 100%">
+                            <mat-label>Gender</mat-label>
+                            <input matInput [(ngModel)]="newStudent.geneder"   name="geneder" [value]="newStudent.geneder" required>
+                        </mat-form-field>
+                    </div>
+
                     <div class="form-row">
                         <mat-form-field appearance="fill" style="width: 100%">
                             <mat-label>Address</mat-label>

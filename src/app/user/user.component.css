@@ -133,3 +133,28 @@ button {
     display: flex;
     align-items: center;
   }
+
+
+
+
+
+  .main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 25px;
+}
+
+.card-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    margin-top: 15px;
+}
+
+.example-card {
+    max-width: 400px;
+    width: 100%;
+}

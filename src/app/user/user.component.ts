@@ -38,5 +38,9 @@ export class UserComponent {
     this.router.navigate(['viewfacilities'])
   }
 
+  viewenquiries():void{
+    this.router.navigate(['viewenquiries'])
+  }
+
 }
 

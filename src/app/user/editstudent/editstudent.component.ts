@@ -2,7 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from 'src/app/service/app.service';
 import { ActivatedRoute } from '@angular/router';
-import { GET_STUDENT, GET_BRANCHES, UPLOAD_PROFILE, APP_PARENT, UPDATE_STUDENT } from 'src/app/utils/endpoints';
+import { GET_STUDENT, GET_BRANCHES, UPLOAD_PROFILE, APP_PARENT, UPDATE_STUDENT, BASEURL } from 'src/app/utils/endpoints';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import Swal from 'sweetalert2';
@@ -15,7 +15,14 @@ interface Student {
   address: string;
   class_branch: string;
   profile_pic: string;
-  parent: Parent
+  parent: Parent,
+  level:string,
+  nationality:string,
+  blood_group:string,
+  weight:number,
+  school_name:string,
+  addhar_number:string,
+  geneder:string
 }
 
 interface Parent {
@@ -52,7 +59,14 @@ export class EditstudentComponent implements OnInit {
     address: '',
     class_branch: '',
     parent: this.parentInfo,
-    profile_pic: ''
+    profile_pic: '',
+    level: '',
+    nationality: '',
+    blood_group: '',
+    weight: 0,
+    school_name: '',
+    addhar_number: '',
+    geneder: ''
   };
 
   isParentInfoFind: boolean = true;
@@ -130,15 +144,16 @@ export class EditstudentComponent implements OnInit {
 
   updateStudent(): void {
     console.log("Update Student : ", this.newStudent);
-    let obj = {
-      name: this.newStudent.name,
-      age: this.newStudent.age,
-      dob: this.newStudent.dob,
-      address: this.newStudent.address,
-      class_branch: this.newStudent.class_branch,
-    }
+    // let obj = {
+    //   name: this.newStudent.name,
+    //   age: this.newStudent.age,
+    //   dob: this.newStudent.dob,
+    //   address: this.newStudent.address,
+    //   class_branch: this.newStudent.class_branch,
+    //   level:this.newStudent.level
+    // }
 
-    this.appService.putRequest(UPDATE_STUDENT + this.studnentId, obj).subscribe((response: any) => {
+    this.appService.putRequest(UPDATE_STUDENT + this.studnentId, this.newStudent).subscribe((response: any) => {
       if (response) {
         Swal.fire({
           position: "top-end",

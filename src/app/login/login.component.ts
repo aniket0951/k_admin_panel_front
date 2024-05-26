@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AppService } from 'src/app/service/app.service';
+import { LOGIN } from '../utils/endpoints';
 
 @Component({
   selector: 'app-login',
@@ -36,7 +37,7 @@ export class LoginComponent implements OnInit {
 
       console.log("Submitting form");
       
-      this.appService.postRequest("http://192.168.0.119:8000/api/login", obj).subscribe((result: any) => {
+      this.appService.postRequest(LOGIN, obj).subscribe((result: any) => {
         console.log(result);
         if (result.status) {
           console.log("Success");
@@ -47,7 +48,7 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('authToken', token);
           const storedToken = localStorage.getItem('authToken');
          console.log('Stored Token:', storedToken);
-          this.router.navigate(['/users']);
+          this.router.navigate(['/viewevents']);
         }else{
           alert(result.message)
         }
