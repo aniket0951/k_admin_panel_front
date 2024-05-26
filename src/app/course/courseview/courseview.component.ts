@@ -110,6 +110,7 @@ export class CourseviewComponent implements OnInit {
   addCourse():void {
     this.appService.postRequest(ADD_COURSE, this.newCourse).subscribe((response:any) => {
       if(response) {
+        this.toggleAddStudent()
 
         Swal.fire({
           position: "top-end",
@@ -118,8 +119,8 @@ export class CourseviewComponent implements OnInit {
           showConfirmButton: false,
           timer: 1500
         });
+        
         this.listCourse()
-        this.toggleAddStudent()
       }
     }, (error)=>{
       let  msg = error.error?.error;
@@ -137,7 +138,6 @@ export class CourseviewComponent implements OnInit {
     this.toggleAddStudent()
     })
 
-    this.toggleAddStudent()
   }
 
   editCourse(param:any):void {

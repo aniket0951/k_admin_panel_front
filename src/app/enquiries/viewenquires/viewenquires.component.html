@@ -1,0 +1,62 @@
+<div class="container">
+    <!-- Button to toggle add student section -->
+
+
+
+
+    <div class="table-container mat-elevation-z8">
+        <h2 style="margin-top: 10px; margin-left: 20px;">Enquiries</h2>
+        <mat-table [dataSource]="dataSource">
+            <!-- Define table columns -->
+            <ng-container matColumnDef="Name">
+                <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+                <mat-cell *matCellDef="let row">{{ row.name ? row.name : 'NA' }}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="Email">
+                <mat-header-cell *matHeaderCellDef>Email</mat-header-cell>
+                <mat-cell *matCellDef="let row">{{ row.email ? row.email : 'NA' }}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="Contact">
+                <mat-header-cell *matHeaderCellDef>Contact</mat-header-cell>
+                <mat-cell *matCellDef="let row">{{ row.contact ? row.contact : 'NA' }}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="Subject">
+                <mat-header-cell *matHeaderCellDef>Subject</mat-header-cell>
+                <mat-cell *matCellDef="let row">{{ row.subject }}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="Message">
+                <mat-header-cell *matHeaderCellDef>Message</mat-header-cell>
+                <mat-cell *matCellDef="let row">{{ row.message }}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="Date" style="margin-right: -120px;">
+                <mat-header-cell *matHeaderCellDef>Date</mat-header-cell>
+                <mat-cell *matCellDef="let row">
+                    {{ row.created_at }}
+                    <span *ngIf="!row.created_at">NA</span>
+                </mat-cell>
+            </ng-container>
+
+
+
+            <ng-container matColumnDef="Action">
+                <mat-header-cell *matHeaderCellDef>Action</mat-header-cell>
+                <mat-cell *matCellDef="let row">
+                    <button mat-icon-button color="primary" (click)="deleteEnquire(row?.id)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+
+                </mat-cell>
+            </ng-container>
+
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+
+    </div>
+
+</div>

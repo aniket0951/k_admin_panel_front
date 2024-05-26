@@ -2,6 +2,9 @@ const BASEURL = "http://192.168.0.119:8000/api";
 // const BASEURL = "http://127.0.0.1:8000/api";
 
 
+// --------------------- Login --------------------------//
+const LOGIN  = BASEURL + "/login"
+
 // -------------------  STUDENTS ------------------------//
 const GET_STUDENTS = BASEURL + "/student/get-students/"
 const ADD_STUDENT = BASEURL + "/student/add-student"
@@ -42,8 +45,14 @@ const GET_FACILITIES = BASEURL + "/app/get_facilities/"
 const UPDATE_FACILITIES = BASEURL + "/app/update_facilities/"
 const UPLOAD_FACILITY_IMAGE = BASEURL + "/app/uploade_facility_image/"
 
+// ------------------  ENQUIREY ------------------------------ //
+
+const LIST_ENQUIRIES = BASEURL + "/app/list_enquiry"
+const DELETE_ENQUIRY = BASEURL + "/app/delete_enquiry/"
+
 export {
     BASEURL,
+    LOGIN,
     GET_STUDENTS,
     GET_BRANCHES,
     ADD_STUDENT,
@@ -70,5 +79,7 @@ export {
     DELETE_FACILITIES,
     GET_FACILITIES,
     UPDATE_FACILITIES,
-    UPLOAD_FACILITY_IMAGE
+    UPLOAD_FACILITY_IMAGE,
+    LIST_ENQUIRIES,
+    DELETE_ENQUIRY
 }

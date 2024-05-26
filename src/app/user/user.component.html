@@ -1,23 +1,24 @@
 <div class="nav-container">
-    <div class="top-nav">
-      <div class="logos">
-        <img class="logo" src="assets/images/kick karate.jpeg" alt="Karate Kick">
-      </div>
-      <button class="logout" (click)="logout()">Logout</button>
+  <div class="top-nav">
+    <div class="logos">
+      <img class="logo" src="assets/images/kick karate.jpeg" alt="Karate Kick">
     </div>
-    <div class="sidenav">
-      <ul>
-        <li (click)="addEvent()">Events</li> 
-        <li (click)="addstudent()">Students </li>
-        <li (click)="viewbranches()" > Branches</li>
-        <li (click)="viewcourse()" > Course</li>
-        <li (click)="viewfacilities()" > Facilities</li>
-
-        
-      </ul>
-    </div>
-    <div class="main-content">
-        <router-outlet></router-outlet>
-    </div>
+    <button class="logout" (click)="logout()">Logout</button>
   </div>
-  
+  <div class="sidenav">
+    <ul>
+      <li (click)="addEvent()">Events</li>
+      <li (click)="addstudent()">Students </li>
+      <li (click)="viewbranches()"> Branches</li>
+      <li (click)="viewcourse()"> Course</li>
+      <li (click)="viewfacilities()"> Facilities</li>
+      <li (click)="viewenquiries()"> Enquiries</li>
+
+
+    </ul>
+  </div>
+  <div class="main-content">
+    
+    <router-outlet></router-outlet>
+  </div>
+</div>

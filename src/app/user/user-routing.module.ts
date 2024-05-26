@@ -12,6 +12,7 @@ import { EditeventComponent } from './event/editevent/editevent.component';
 import { CourseviewComponent } from '../course/courseview/courseview.component';
 import { EditcourseComponent } from '../course/editcourse/editcourse.component';
 import { ViewfacilitesComponent } from '../facilities/viewfacilites/viewfacilites.component';
+import { ViewenquiresComponent } from '../enquiries/viewenquires/viewenquires.component';
 
 const routes: Routes = [
   {
@@ -29,6 +30,7 @@ const routes: Routes = [
       { path: 'course', component: CourseviewComponent },
       { path: 'editcourse', component:EditcourseComponent},
       { path: 'viewfacilities', component:ViewfacilitesComponent},
+      { path: 'viewenquiries', component:ViewenquiresComponent}
 
     ]
   }
